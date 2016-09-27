@@ -1,0 +1,6 @@
+##teamcity[progressMessage 'starting t/test-data/Test-Builder/simple-fail-comparison/input.st']
+##teamcity[testSuiteStarted flowId='t/test-data/Test-Builder/simple-fail-comparison/input.st' name='t/test-data/Test-Builder/simple-fail-comparison/input.st']
+##teamcity[testStarted flowId='t/test-data/Test-Builder/simple-fail-comparison/input.st' name='simple-fail-comparison-msg']
+##teamcity[testFailed details='  Failed test |'simple-fail-comparison-msg|'|n  at t/test-data/Test-Builder/simple-fail-comparison/input.st line 6.|n         got: |'a|'|n    expected: |'b|'|n' flowId='t/test-data/Test-Builder/simple-fail-comparison/input.st' message='not ok' name='simple-fail-comparison-msg']
+##teamcity[testFinished flowId='t/test-data/Test-Builder/simple-fail-comparison/input.st' name='simple-fail-comparison-msg']
+##teamcity[testSuiteFinished flowId='t/test-data/Test-Builder/simple-fail-comparison/input.st' name='t/test-data/Test-Builder/simple-fail-comparison/input.st']

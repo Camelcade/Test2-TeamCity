@@ -1,0 +1,5 @@
+##teamcity[progressMessage 'starting t/test-data/Test-Builder/simple-ok/input.st']
+##teamcity[testSuiteStarted flowId='t/test-data/Test-Builder/simple-ok/input.st' name='t/test-data/Test-Builder/simple-ok/input.st']
+##teamcity[testStarted flowId='t/test-data/Test-Builder/simple-ok/input.st' name='simple-ok-msg']
+##teamcity[testFinished flowId='t/test-data/Test-Builder/simple-ok/input.st' name='simple-ok-msg']
+##teamcity[testSuiteFinished flowId='t/test-data/Test-Builder/simple-ok/input.st' name='t/test-data/Test-Builder/simple-ok/input.st']

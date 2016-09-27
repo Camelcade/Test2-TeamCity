@@ -1,0 +1,16 @@
+A context appears to have been destroyed without first calling release().
+Based on $@ it does not look like an exception was thrown (this is not always
+a reliable test)
+
+This is a problem because the global error variables ($!, $@, and $?) will
+not be restored. In addition some release callbacks will not work properly from
+inside a DESTROY method.
+
+Here are the context creation details, just in case a tool forgot to call
+release():
+  File: {FILE}
+  Line: {LINE}
+  Tool: {TOOL}
+
+Cleaning up the CONTEXT stack...
+Last suite on the stack ({SUBTEST-ID}) does not match suite we want to finish (t/test-data/Test-Builder/subtest-dies-mid-test/input.st) at lib/Test2/Formatter/TeamCity.pm line 134.

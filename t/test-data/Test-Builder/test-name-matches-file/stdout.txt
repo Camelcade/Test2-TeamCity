@@ -1,0 +1,5 @@
+##teamcity[progressMessage 'starting t/test-data/Test-Builder/test-name-matches-file/input.st']
+##teamcity[testSuiteStarted flowId='t/test-data/Test-Builder/test-name-matches-file/input.st' name='t/test-data/Test-Builder/test-name-matches-file/input.st']
+##teamcity[testStarted flowId='t/test-data/Test-Builder/test-name-matches-file/input.st' name='t/test-data/Test-Builder/test-name-matches-file/input.st']
+##teamcity[testFinished flowId='t/test-data/Test-Builder/test-name-matches-file/input.st' name='t/test-data/Test-Builder/test-name-matches-file/input.st']
+##teamcity[testSuiteFinished flowId='t/test-data/Test-Builder/test-name-matches-file/input.st' name='t/test-data/Test-Builder/test-name-matches-file/input.st']

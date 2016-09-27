@@ -1,0 +1,3 @@
+##teamcity[progressMessage 'starting t/test-data/Test-Builder/exit-before-first-test/input.st']
+##teamcity[testSuiteStarted flowId='t/test-data/Test-Builder/exit-before-first-test/input.st' name='t/test-data/Test-Builder/exit-before-first-test/input.st']
+##teamcity[testSuiteFinished flowId='t/test-data/Test-Builder/exit-before-first-test/input.st' name='t/test-data/Test-Builder/exit-before-first-test/input.st']

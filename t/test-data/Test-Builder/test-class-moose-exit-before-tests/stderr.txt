@@ -1,0 +1,91 @@
+A context appears to have been destroyed without first calling release().
+Based on $@ it does not look like an exception was thrown (this is not always
+a reliable test)
+
+This is a problem because the global error variables ($!, $@, and $?) will
+not be restored. In addition some release callbacks will not work properly from
+inside a DESTROY method.
+
+Here are the context creation details, just in case a tool forgot to call
+release():
+  File: {FILE}
+  Line: {LINE}
+  Tool: {TOOL}
+
+Cleaning up the CONTEXT stack...
+A context appears to have been destroyed without first calling release().
+Based on $@ it does not look like an exception was thrown (this is not always
+a reliable test)
+
+This is a problem because the global error variables ($!, $@, and $?) will
+not be restored. In addition some release callbacks will not work properly from
+inside a DESTROY method.
+
+Here are the context creation details, just in case a tool forgot to call
+release():
+  File: {FILE}
+  Line: {LINE}
+  Tool: {TOOL}
+
+Cleaning up the CONTEXT stack...
+A context appears to have been destroyed without first calling release().
+Based on $@ it does not look like an exception was thrown (this is not always
+a reliable test)
+
+This is a problem because the global error variables ($!, $@, and $?) will
+not be restored. In addition some release callbacks will not work properly from
+inside a DESTROY method.
+
+Here are the context creation details, just in case a tool forgot to call
+release():
+  File: {FILE}
+  Line: {LINE}
+  Tool: {TOOL}
+
+Cleaning up the CONTEXT stack...
+A context appears to have been destroyed without first calling release().
+Based on $@ it does not look like an exception was thrown (this is not always
+a reliable test)
+
+This is a problem because the global error variables ($!, $@, and $?) will
+not be restored. In addition some release callbacks will not work properly from
+inside a DESTROY method.
+
+Here are the context creation details, just in case a tool forgot to call
+release():
+  File: {FILE}
+  Line: {LINE}
+  Tool: {TOOL}
+
+Cleaning up the CONTEXT stack...
+A context appears to have been destroyed without first calling release().
+Based on $@ it does not look like an exception was thrown (this is not always
+a reliable test)
+
+This is a problem because the global error variables ($!, $@, and $?) will
+not be restored. In addition some release callbacks will not work properly from
+inside a DESTROY method.
+
+Here are the context creation details, just in case a tool forgot to call
+release():
+  File: {FILE}
+  Line: {LINE}
+  Tool: {TOOL}
+
+Cleaning up the CONTEXT stack...
+A context appears to have been destroyed without first calling release().
+Based on $@ it does not look like an exception was thrown (this is not always
+a reliable test)
+
+This is a problem because the global error variables ($!, $@, and $?) will
+not be restored. In addition some release callbacks will not work properly from
+inside a DESTROY method.
+
+Here are the context creation details, just in case a tool forgot to call
+release():
+  File: {FILE}
+  Line: {LINE}
+  Tool: {TOOL}
+
+Cleaning up the CONTEXT stack...
+Subtest test_method_1 did not finish! at /home/autarch/.perlbrew/libs/perl-5.20.2@work/lib/perl5/Test2/AsyncSubtest.pm line 470 during global destruction.

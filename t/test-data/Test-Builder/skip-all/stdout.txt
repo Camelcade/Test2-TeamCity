@@ -1,0 +1,6 @@
+##teamcity[progressMessage 'starting t/test-data/Test-Builder/skip-all/input.st']
+##teamcity[testSuiteStarted flowId='t/test-data/Test-Builder/skip-all/input.st' name='t/test-data/Test-Builder/skip-all/input.st']
+##teamcity[testStarted flowId='t/test-data/Test-Builder/skip-all/input.st' name='Skipped']
+##teamcity[testIgnored flowId='t/test-data/Test-Builder/skip-all/input.st' message='skip-reason' name='Skipped']
+##teamcity[testFinished flowId='t/test-data/Test-Builder/skip-all/input.st' name='Skipped']
+##teamcity[testSuiteFinished flowId='t/test-data/Test-Builder/skip-all/input.st' name='t/test-data/Test-Builder/skip-all/input.st']
