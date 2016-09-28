@@ -1,4 +1,0 @@
-##teamcity[progressMessage 'starting t/test-data/Test-Builder/test-class-moose-exit-before-tests/input.st']
-##teamcity[testSuiteStarted flowId='t/test-data/Test-Builder/test-class-moose-exit-before-tests/input.st' name='t/test-data/Test-Builder/test-class-moose-exit-before-tests/input.st']
-##teamcity[message flowId='t/test-data/Test-Builder/test-class-moose-exit-before-tests/input.st' text='Test ended with extra hubs on the stack!']
-##teamcity[testSuiteFinished flowId='t/test-data/Test-Builder/test-class-moose-exit-before-tests/input.st' name='t/test-data/Test-Builder/test-class-moose-exit-before-tests/input.st']

@@ -1,0 +1,7 @@
+##teamcity[progressMessage 'starting t/test-data/Test2/simple-fail-comparison/input.st']
+##teamcity[testSuiteStarted flowId='t/test-data/Test2/simple-fail-comparison/input.st' name='t/test-data/Test2/simple-fail-comparison/input.st']
+##teamcity[message flowId='t/test-data/Test2/simple-fail-comparison/input.st' text='Seeded srand with seed |'{DATE}|' from local date.']
+##teamcity[testStarted flowId='t/test-data/Test2/simple-fail-comparison/input.st' name='simple-fail-comparison-msg']
+##teamcity[testFailed details='Failed test |'simple-fail-comparison-msg|'|nat t/test-data/Test2/simple-fail-comparison/input.st line 6.|n+-----+----+-------+|n|| GOT || OP || CHECK |||n+-----+----+-------+|n|| a   || eq || b     |||n+-----+----+-------+' flowId='t/test-data/Test2/simple-fail-comparison/input.st' message='not ok' name='simple-fail-comparison-msg']
+##teamcity[testFinished flowId='t/test-data/Test2/simple-fail-comparison/input.st' name='simple-fail-comparison-msg']
+##teamcity[testSuiteFinished flowId='t/test-data/Test2/simple-fail-comparison/input.st' name='t/test-data/Test2/simple-fail-comparison/input.st']

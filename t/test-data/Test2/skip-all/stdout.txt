@@ -1,0 +1,7 @@
+##teamcity[progressMessage 'starting t/test-data/Test2/skip-all/input.st']
+##teamcity[testSuiteStarted flowId='t/test-data/Test2/skip-all/input.st' name='t/test-data/Test2/skip-all/input.st']
+##teamcity[message flowId='t/test-data/Test2/skip-all/input.st' text='Seeded srand with seed |'{DATE}|' from local date.']
+##teamcity[testStarted flowId='t/test-data/Test2/skip-all/input.st' name='Skipped']
+##teamcity[testIgnored flowId='t/test-data/Test2/skip-all/input.st' message='skip-reason' name='Skipped']
+##teamcity[testFinished flowId='t/test-data/Test2/skip-all/input.st' name='Skipped']
+##teamcity[testSuiteFinished flowId='t/test-data/Test2/skip-all/input.st' name='t/test-data/Test2/skip-all/input.st']

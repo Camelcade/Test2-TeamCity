@@ -1,0 +1,7 @@
+##teamcity[progressMessage 'starting t/test-data/Test2/subtest-dies-mid-test/input.st']
+##teamcity[testSuiteStarted flowId='t/test-data/Test2/subtest-dies-mid-test/input.st' name='t/test-data/Test2/subtest-dies-mid-test/input.st']
+##teamcity[message flowId='t/test-data/Test2/subtest-dies-mid-test/input.st' text='Seeded srand with seed |'{DATE}|' from local date.']
+##teamcity[testStarted flowId='t/test-data/Test2/subtest-dies-mid-test/input.st' name='subtest-dies-mid-test-msg-1']
+##teamcity[message flowId='t/test-data/Test2/subtest-dies-mid-test/input.st' text='Test ended with extra hubs on the stack!']
+##teamcity[testFinished flowId='t/test-data/Test2/subtest-dies-mid-test/input.st' name='subtest-dies-mid-test-msg-1']
+##teamcity[testSuiteFinished flowId='t/test-data/Test2/subtest-dies-mid-test/input.st' name='t/test-data/Test2/subtest-dies-mid-test/input.st']

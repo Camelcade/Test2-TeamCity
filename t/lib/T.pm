@@ -113,6 +113,10 @@ sub _test_stdout {
         : undef;
 
     if ( defined $expected ) {
+        $stdout
+            =~ s{\QSeeded srand with seed |'\E\d{8}\Q|' from local date.}
+                {Seeded srand with seed |'{DATE}|' from local date.};
+
         _compare_lines( $stdout, $expected )
             or diag($stdout);
     }
