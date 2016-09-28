@@ -1,4 +1,4 @@
-package TAP::Formatter::TeamCity::Test::SimpleSkip;
+package Test2::Formatter::TeamCity::Test::SimpleSkip;
 
 use strict;
 use warnings;

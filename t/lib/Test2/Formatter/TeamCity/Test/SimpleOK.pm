@@ -1,4 +1,4 @@
-package TAP::Formatter::TeamCity::Test::SimpleOK;
+package Test2::Formatter::TeamCity::Test::SimpleOK;
 
 use strict;
 use warnings;

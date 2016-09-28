@@ -1,4 +1,4 @@
-package TAP::Formatter::TeamCity::Test::OKNoMessage;
+package Test2::Formatter::TeamCity::Test::OKNoMessage;
 
 use strict;
 use warnings;

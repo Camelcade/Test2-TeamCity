@@ -5,12 +5,12 @@ use lib 't/lib';
 
 use Test::Class::Moose::Runner;
 
-use TAP::Formatter::TeamCity::Test::SimpleOK;
-use TAP::Formatter::TeamCity::Test::SimpleFail;
+use Test2::Formatter::TeamCity::Test::SimpleOK;
+use Test2::Formatter::TeamCity::Test::SimpleFail;
 
 Test::Class::Moose::Runner
     ->new(test_classes => [qw(
-        TAP::Formatter::TeamCity::Test::SimpleOK
-        TAP::Formatter::TeamCity::Test::SimpleFail)])
+        Test2::Formatter::TeamCity::Test::SimpleOK
+        Test2::Formatter::TeamCity::Test::SimpleFail)])
     ->runtests;
 

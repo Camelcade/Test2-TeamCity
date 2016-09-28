@@ -4,10 +4,8 @@ use warnings;
 use lib 't/lib';
 
 use IPC::Run3 qw(run3);
-use List::Util qw(max);
 use Path::Class;
 use Path::Class::Rule;
-use TAP::Formatter::Session::TeamCity;
 
 use Test::Class::Moose 0.80 ();
 use Test2 1.0203060 ();

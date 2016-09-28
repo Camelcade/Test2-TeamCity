@@ -5,9 +5,9 @@ use lib 't/lib';
 
 use Test::Class::Moose::Runner;
 
-use TAP::Formatter::TeamCity::Test::OKNoMessage;
+use Test2::Formatter::TeamCity::Test::OKNoMessage;
 
 Test::Class::Moose::Runner
-    ->new(test_classes => [qw(TAP::Formatter::TeamCity::Test::OKNoMessage)])
+    ->new(test_classes => [qw(Test2::Formatter::TeamCity::Test::OKNoMessage)])
     ->runtests;
 

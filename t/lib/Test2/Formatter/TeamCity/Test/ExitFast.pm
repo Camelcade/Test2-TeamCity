@@ -1,4 +1,4 @@
-package TAP::Formatter::TeamCity::Test::ExitFast;
+package Test2::Formatter::TeamCity::Test::ExitFast;
 
 use strict;
 use warnings;
