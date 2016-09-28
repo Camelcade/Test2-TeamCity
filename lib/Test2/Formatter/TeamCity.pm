@@ -28,6 +28,16 @@ sub init {
 
 sub hide_buffered {1}
 
+sub encoding {
+    my $self     = shift;
+    my $encoding = shift;
+
+    binmode $self->{ +_HANDLE }, $encoding
+        or die $!;
+
+    return;
+}
+
 sub write {
     my $self  = shift;
     my $event = shift;
@@ -231,7 +241,7 @@ my %METHODS = (
     'Test2::Event::Exception'         => '_event_exception',
     'Test2::Event::Plan'              => '_event_plan',
     'Test2::Event::TeamCity::Message' => '_event_tc_message',
-    'Test2::Event::Waiting' => '_event_waiting',
+    'Test2::Event::Waiting'           => '_event_waiting',
 );
 
 sub _children_to_tc {
