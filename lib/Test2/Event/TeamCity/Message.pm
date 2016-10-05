@@ -16,3 +16,25 @@ sub init {
 }
 
 1;
+
+# ABSTRACT: A TeamCity message event
+
+__END__
+
+=head1 DESCRIPTION
+
+This is a L<Test2::Event> representing an explicit TeamCity message being
+sent.
+
+=head1 ACCESSORS
+
+This class provides the following accessors:
+
+=head2 status
+
+The message's status. This defaults to C<NORMAL>. It can be any status allowed
+by TeamCity.
+
+=head2 text
+
+The text of the message.

@@ -35,3 +35,5 @@ sub tc_message {
 }
 
 1;
+
+# ABSTRACT: TeamCity tools for Test2

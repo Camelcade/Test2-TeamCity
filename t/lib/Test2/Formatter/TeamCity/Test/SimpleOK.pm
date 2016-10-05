@@ -16,3 +16,10 @@ sub test_method_2 {
 }
 
 1;
+
+__END__
+
+=head1 DESCRIPTION
+
+This class simply has two methods, C<test_method_1> and C<test_method_2>. Each
+method calls C<ok> twice, each time with a true value.

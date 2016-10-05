@@ -220,3 +220,52 @@ sub _clean_module_load_errors {
 }
 
 1;
+
+__END__
+
+=head1 SYNOPSIS
+
+  use T;
+  run_tests('t/test-data/Test-Builder');
+
+=head2 DESCRIPTION
+
+The universal test runner for testing the Test2::TeamCity formatter.
+
+The file structure should be something like:
+
+    t/test-data/
+        test-name-here/
+            test-case-1/
+                input.st
+                stdout.txt
+            test-case-explosion/
+                input.st
+                stdout.txt
+                stderr.txt
+            yet_another_directory/
+                input.st
+                stdout.txt
+
+The C<input.st> code should contain Perl code that executes Perl tests using
+either old-style Perl tools like L<Test::More> or the L<Test2> tools.
+
+The C<stdout.txt> should contain TeamCity style output that the Perl code when
+executed with the Test2::TeamCity::Formatter should produce. The C<stderr.txt>
+file contains the output that is expected to go to stderr. Either file can be
+ommitted, in which case the test makes sure that the appropriate filehandle
+receives no output.
+
+If you set the C<TEST_VERBOSE> env var to true, then this test code will use
+C<note> to display the stdout output that was actually received.
+
+=head1 FUNCTIONS
+
+This module provides one function which is exported by default.
+
+=head3 run_tests($dir)
+
+This looks through the given directory recursively for subdirectories
+containing C<input.st> files. It runs them and compares them to the output
+file in the same directory.
+

@@ -12,3 +12,10 @@ sub test_method_1 {
 }
 
 1;
+
+__END__
+
+=head1 DESCRIPTION
+
+This class has one method that exits prematurely by calling C<exit> before
+actually running any test functions.

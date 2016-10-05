@@ -1,0 +1,27 @@
+=head1 NAME
+
+Test2::TeamCity Test Suite
+
+=head1 DESCRIPTION
+
+This directory contains tests for testing the Test2::TeamCity system.
+
+When MaxMind wrote this module there were three main senarios we wanted to
+make sure worked:
+
+=over
+
+=item When using Test::Class::Moose
+
+=item When using a traditional Test::Builder based test suite (Test::More)
+
+=item When using the shiny new Test2 based test suite (Test2::Suite)
+
+=back
+
+Each one of these senarios are represented by their own C<.t> file in the top
+level directory (C<Test-Class-Moose.t>, C<Test-Builder.t> and C<Test2.t>
+respectively) that all use the L<T> module's C<run_tests> sub with different
+arguments.
+
+The L<T> module is responsible for actually running these tests.
