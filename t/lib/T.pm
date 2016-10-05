@@ -47,7 +47,7 @@ sub _test_formatter {
             {
                 local $ENV{T2_FORMATTER} = 'TeamCity';
                 run3(
-                    [ qw( perl -I lib ), @t_files ],
+                    [ $^X, qw( -I lib ), @t_files ],
                     \undef,
                     \@stdout,
                     \@stderr,
