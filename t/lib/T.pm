@@ -36,7 +36,7 @@ sub _test_formatter {
         $test_dir,
         sub {
             my @t_files
-                = Path::Class::Rule->new->file->name(qr/\.st/)->all($test_dir)
+                = Path::Class::Rule->new->file->name('input.st')->all($test_dir)
                 or return;
 
             if ( @t_files > 1 ) {
