@@ -16,3 +16,17 @@ sub init {
 }
 
 1;
+
+# ABSTRACT a TeamCity message event
+
+__END__
+
+=head2 Attributes
+
+=head3 status
+
+The status.  Defaults to C<NORMAL>
+
+=head3 text
+
+The text of the message

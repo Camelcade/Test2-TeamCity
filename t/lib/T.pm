@@ -36,7 +36,7 @@ sub _test_formatter {
         $test_dir,
         sub {
             my @t_files
-                = Path::Class::Rule->new->file->name(qr/\.st/)->all($test_dir)
+                = Path::Class::Rule->new->file->name(qr/\.st\z/)->all($test_dir)
                 or return;
 
             if ( @t_files > 1 ) {
@@ -47,7 +47,7 @@ sub _test_formatter {
             {
                 local $ENV{T2_FORMATTER} = 'TeamCity';
                 run3(
-                    [ qw( perl -I lib ), @t_files ],
+                    [ qw( perl -I lib -- ), @t_files ],
                     \undef,
                     \@stdout,
                     \@stderr,
@@ -220,3 +220,46 @@ sub _clean_module_load_errors {
 }
 
 1;
+
+__END__
+
+=head1 SYNOPSIS
+
+   use T;
+   run_test('t/test-data/Test-Builder');
+
+=head2 DESCRIPTION
+
+The universal test runner for testing Test2::TeamCity.
+
+File structure should be something like
+
+    t/test-data/
+        some_test_name/
+            some_directory/
+                input.st
+                output.txt
+            some_other_directory/
+                input.st
+                output.txt
+            yet_another_directory/
+                input.st
+                output.txt
+
+The C<input.st> code should contain Perl code that executes Test2 type tests.
+The C<output.txt> should contain TeamCity style output that the Perl code when
+executed with the Test2::TeamCity::Formatter should produce.
+
+You can set the C<TEST_VERBOSE> env var to also output all the TC messages to
+STDOUT.
+
+=head2 FUNCTIONS
+
+Exported by default
+
+=head3 run_tests($dir)
+
+Recusively runs all the tests input files in the directory (all the C<.st>
+files, each of which should contain Perl code.)  Compares the output against
+the C<output.txt> in the same directory as each C<.st> file.
+

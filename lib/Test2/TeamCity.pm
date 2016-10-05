@@ -35,3 +35,12 @@ sub tc_message {
 }
 
 1;
+
+# ASBTRACT: TeamCity interface to Test2
+
+__END__
+
+=head3 tc_method( $status, $text )
+
+=head3 tc_method( $text )
+

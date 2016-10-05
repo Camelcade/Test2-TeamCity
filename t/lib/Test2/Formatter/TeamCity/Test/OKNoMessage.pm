@@ -10,3 +10,12 @@ sub test_method_1 {
 }
 
 1;
+
+# ABSTRACT: An example test suite class for testing Test2::TeamCity
+
+__END__
+
+=head1 DESCRIPTION
+
+Class used for testing simple success message that B<doesn't have a tap
+message associated with it.>

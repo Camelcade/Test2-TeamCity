@@ -16,3 +16,14 @@ sub test_method_2 {
 }
 
 1;
+
+# ABSTRACT: An example test suite class for testing Test2::TeamCity
+
+__END__
+
+=head1 DESCRIPTION
+
+Class used for testing success and failure methods messages.
+
+This class simply has two methods C<test_method_1> and C<test_method_2>
+that produce one failure, one success each (though in different orders.)

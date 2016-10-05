@@ -21,3 +21,10 @@ sub test_method_2 {
 }
 
 1;
+
+# ABSTRACT: An example test suite class for testing Test2::TeamCity
+
+__END__
+
+=head1 DESCRIPTION
+

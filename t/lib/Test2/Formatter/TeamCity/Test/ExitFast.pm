@@ -12,3 +12,12 @@ sub test_method_1 {
 }
 
 1;
+
+# ABSTRACT: An example test suite class for testing Test2::TeamCity
+
+__END__
+
+=head1 DESCRIPTION
+
+This class has one method that exits prematurely before actually running
+any test functions
