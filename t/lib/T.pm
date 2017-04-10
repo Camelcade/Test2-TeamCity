@@ -117,6 +117,11 @@ sub _test_stdout {
             =~ s{\QSeeded srand with seed |'\E\d{8}\Q|' from local date.}
                 {Seeded srand with seed |'{DATE}|' from local date.};
 
+        # This hacks exist to replace user-specific paths with some sort of
+        # fixed test.
+        s{\|nat .+?/AsyncSubtest[.]pm line \d+}{\|nat CODE line XXX}g
+            for ($stdout, $expected);
+
         _compare_lines( $stdout, $expected )
             or diag($stdout);
     }
@@ -195,12 +200,13 @@ sub _clean_subtest_ids {
 }
 
 sub _clean_file_references {
-
     # These hacks exist to replace user-specific paths with some sort of fixed
     # test.
     for my $output (@_) {
         ${$output}
             =~ s{(#\s+at ).+/Moose([^\s]+) line \d+}{${1}CODE line XXX}g;
+        ${$output}
+            =~ s{ at .+?/AsyncSubtest[.]pm line \d+}{ at CODE line XXX}g;
         ${$output} =~ s{\(\@INC contains: .+?\)}{(\@INC contains: XXX)}sg;
     }
 
