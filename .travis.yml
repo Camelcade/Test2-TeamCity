@@ -1,0 +1,11 @@
+---
+sudo: false
+notifications:
+  email:
+    on_failure: always
+    on_success: change
+    recipients:
+      - dev-ci@maxmind.com
+  slack:
+    rooms:
+      secure: "kpc7hDzCAXKjmz4CRL2fFf56tVAVFpfol8P82n2nofi9rftpeK/Rjv71WtbDLOKOrdDKa/gqB6QeqGryde287W2/6OtVfF6hqumXkg0q61SfpYU2AfujVdog5lc99I/SX+/HyZRrOZhFTO0f9h/AtoZ+WH7bOQB44LMMAwt1UrOhpb6SESvkjgiqzGMIlEryhQNvTk0rK9o18xdq+RAXueLvpCSecybVF8zPYRmhsQqKVqQ8hBba2r+Hiu/3Jn2YJ6ygxidIsg1obi5f8LbhguMyn50M1dSv7OZTSFKjcuDwxaQ7ey6c7fHApgNTTnRXaOt7EsVbP5LlAqTU+iyn88gn+lAYkFrYr4COK1tKS6K2cCUYNQQGj8SkoZTXD40DRtSQPrVe+TLUAV0/Bb43JEU0an806oq//moQiAEDpZYi4LZXqPsFsH16opEhjFZdvgtoHkk6CMpeIcdCnDvThT9GFghTX3MTI9nffgQPbn63xdak1ukat1oWsX4D26jQs8RUIxOXErpi9rWQ+FW9mk/ldxglYbIgKLf0mtwzFKvIg7MnaYc8/k+Hq/1XGQrrJelJ7gMmRdxOyi+RkuKE2X1iYOk6vfdJVXsLQc/pzo5b/GaAbVa8nuaM6icR+tvCa+5GPWlA1PVN/470ZjYhu0hip2BdtFDs7sTex+Qh8v0=\n"
