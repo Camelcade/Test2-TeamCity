@@ -22,3 +22,6 @@ sub add_child {
 }
 
 1;
+
+# ABSTRACT: Test2 formatter for TeamCity helper object for test suites
+
