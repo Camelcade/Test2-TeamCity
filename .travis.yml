@@ -5,6 +5,7 @@ addons:
     packages:
       - aspell
       - aspell-en
+language: perl
 perl:
   - blead
   - dev
