@@ -9,6 +9,8 @@ use TeamCity::Message qw( tc_message );
 use Test2 1.0203060 ();
 use Test2::Formatter::TeamCity::Suite;
 
+our $VERSION = '1.000000';
+
 # The no_* attributes are solely there so Test::Builder doesn't complain. What
 # they're set to has no impact on the output from this Formatter class.
 use Test2::Util::HashBase
@@ -481,3 +483,5 @@ sub _not_empty {
 }
 
 1;
+
+# ABSTRACT: Test2 formatter producing TeamCity compatible output
