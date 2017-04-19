@@ -16,6 +16,15 @@ our $VERSION = '1.000000';
 use Test2::Util::HashBase
     qw( no_diag no_header no_numbers _handle _current _finalized _top );
 
+# init comes from HashBase
+# other methods are documented in Test2::Formatter
+
+=for Pod::Coverage
+    init
+    hide_buffered encoding write terminate finalize
+
+=cut
+
 sub init {
     my $self = shift;
 
@@ -349,8 +358,7 @@ sub _event_diag {
 
 # This will be handle in the terminate method
 sub _event_bail {
-    my $self  = shift;
-    my $event = shift;
+    my $self = shift;
 
     return;
 }
@@ -476,10 +484,9 @@ sub _finish_test {
 }
 
 sub _tc_message {
-    my $self         = shift;
-    my $type         = shift;
-    my $content      = shift;
-    my $force_stdout = shift;
+    my $self    = shift;
+    my $type    = shift;
+    my $content = shift;
 
     if ( ref $content ) {
         $content->{flowId} ||= $0;
