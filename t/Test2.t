@@ -5,7 +5,4 @@ use lib 't/lib';
 
 use T;
 
-# setting this makes the tests pass
-local $ENV{HARNESS_ACTIVE};
-
 run_tests( 't/test-data/Test2', @ARGV );

@@ -117,11 +117,6 @@ sub _test_stdout {
             =~ s{\QSeeded srand with seed |'\E\d{8}\Q|' from local date.}
                 {Seeded srand with seed |'{DATE}|' from local date.};
 
-        # This hacks exist to replace user-specific paths with some sort of
-        # fixed test.
-        s{\|nat .+?/AsyncSubtest[.]pm line \d+}{\|nat CODE line XXX}g
-            for ($stdout, $expected);
-
         _compare_lines( $stdout, $expected )
             or diag($stdout);
     }
@@ -149,7 +144,6 @@ sub _test_stderr {
         _clean_subtest_ids( \$stderr );
         _clean_file_references( \$stderr, \$expected );
         _clean_module_load_errors( \$expected );
-        _clean_line_numbers( \$stderr, \$expected );
 
         _compare_lines( $stderr, $expected )
             or diag($stderr);
@@ -201,13 +195,12 @@ sub _clean_subtest_ids {
 }
 
 sub _clean_file_references {
+
     # These hacks exist to replace user-specific paths with some sort of fixed
     # test.
     for my $output (@_) {
         ${$output}
             =~ s{(#\s+at ).+/Moose([^\s]+) line \d+}{${1}CODE line XXX}g;
-        ${$output}
-            =~ s{ at .+?/AsyncSubtest[.]pm line \d+}{ at CODE line XXX}g;
         ${$output} =~ s{\(\@INC contains: .+?\)}{(\@INC contains: XXX)}sg;
     }
 
@@ -224,14 +217,6 @@ sub _clean_module_load_errors {
         if $] < 5.018;
 
     return;
-}
-
-sub _clean_line_numbers {
-    # this hack exists to avoid us having to fix up the line numbers in the
-    # tests each and every time we change the code
-    for my $output (@_) {
-        ${$output} =~ s/line [0-9]+./line {LINENUM}./mg;
-    }
 }
 
 1;

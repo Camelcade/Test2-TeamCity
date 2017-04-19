@@ -3,7 +3,7 @@ package Test2::TeamCity;
 use strict;
 use warnings;
 
-use Test2::API 1.302083 qw( context );
+use Test2::API qw( context );
 use Test2::Event::TeamCity::Message;
 
 use Exporter qw( import );
