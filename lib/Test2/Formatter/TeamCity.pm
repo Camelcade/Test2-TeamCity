@@ -280,6 +280,9 @@ sub _children_to_tc {
     }
 }
 
+## no critic (Subroutines::ProhibitUnusedPrivateSubroutines)
+# Perl critic isn't clever enough to realize the _event_* methods are
+# called from the dispatch %METHODS hash within this class
 sub _event_ok {
     my $self  = shift;
     my $event = shift;
@@ -408,6 +411,7 @@ sub _event_other {
 
     die "Unexpected event! $event";
 }
+## use critic
 
 sub _name_for_event {
     my $self  = shift;
