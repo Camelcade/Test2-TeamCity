@@ -3,7 +3,7 @@ use warnings;
 
 use lib 't/lib';
 
-use T;
+use T qw( run_tests );
 
 # setting this makes the tests pass
 local $ENV{HARNESS_ACTIVE};

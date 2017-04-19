@@ -13,7 +13,7 @@ use Test::Class::Moose 0.80 ();
 
 use Exporter qw( import );
 
-our @EXPORT = 'run_tests';
+our @EXPORT_OK = 'run_tests';
 
 sub run_tests {
     my $dir  = shift;
