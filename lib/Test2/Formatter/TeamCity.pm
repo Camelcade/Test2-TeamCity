@@ -19,7 +19,14 @@ use Test2::Util::HashBase
 sub init {
     my $self = shift;
 
+    # TODO: BUG BUG BUG BUG
+    # This shouldn't dup STDOUT, but use Test2::API's test2_stdout function to
+    # get the original STDOUT instead *but* that hasn't been released to the
+    # CPAN at the time I'm coding this, so, c'est la vie.
+    ## no critic (InputOutput::RequireBriefOpen)
     open my $fh, '>&', STDOUT or die "Can't dup STDOUT: $!";
+    ## use critic
+
     $fh->autoflush(1);
     $self->{ +_HANDLE } = $fh;
 
