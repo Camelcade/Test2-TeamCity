@@ -47,6 +47,9 @@ sub encoding {
     return;
 }
 
+## no critic (Subroutines::ProhibitBuiltinHomonyms)
+# We've got no choice but to call this 'write' - that's the public API
+# for Test2 formatters
 sub write {
     my $self  = shift;
     my $event = shift;
@@ -89,6 +92,7 @@ sub write {
 
     return;
 }
+## use critic
 
 sub _maybe_start_suite {
     my $self  = shift;
