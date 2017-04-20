@@ -9,13 +9,6 @@ use Test2::Util::HashBase qw/status text/;
 
 our $VERSION = '1.000000';
 
-# init is a standard method defined by HashBase
-
-=for Pod::Coverage
-  init
-
-=cut
-
 sub init {
     my $self = shift;
 
@@ -47,3 +40,6 @@ by TeamCity.
 =head2 text
 
 The text of the message.
+
+=for Pod::Coverage
+  init

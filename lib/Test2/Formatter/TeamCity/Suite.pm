@@ -7,13 +7,6 @@ use Test2::Util::HashBase qw( id name children parent );
 
 our $VERSION = '1.000000';
 
-# init is for HashBase
-
-=for Pod::Coverage
-    init
-
-=cut
-
 sub init {
     my $self = shift;
 
@@ -64,4 +57,5 @@ Parent test suite
 
 Add to the array of children
 
-
+=for Pod::Coverage
+    init

@@ -16,15 +16,6 @@ our $VERSION = '1.000000';
 use Test2::Util::HashBase
     qw( no_diag no_header no_numbers _handle _current _finalized _top );
 
-# init comes from HashBase
-# other methods are documented in Test2::Formatter
-
-=for Pod::Coverage
-    init
-    hide_buffered encoding write terminate finalize
-
-=cut
-
 sub init {
     my $self = shift;
 
@@ -506,4 +497,10 @@ sub _not_empty {
 
 1;
 
+__END__
+
 # ABSTRACT: Test2 formatter producing TeamCity compatible output
+
+=for Pod::Coverage
+    init
+    hide_buffered encoding write terminate finalize
