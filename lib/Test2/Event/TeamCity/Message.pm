@@ -7,10 +7,12 @@ use parent 'Test2::Event';
 
 use Test2::Util::HashBase qw/status text/;
 
+our $VERSION = '1.000000';
+
 sub init {
     my $self = shift;
 
-    $self->{+STATUS} ||= 'NORMAL';
+    $self->{ +STATUS } ||= 'NORMAL';
 
     return;
 }
@@ -38,3 +40,6 @@ by TeamCity.
 =head2 text
 
 The text of the message.
+
+=for Pod::Coverage
+  init

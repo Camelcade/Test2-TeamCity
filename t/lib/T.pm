@@ -13,7 +13,7 @@ use Test::Class::Moose 0.80 ();
 
 use Exporter qw( import );
 
-our @EXPORT = 'run_tests';
+our @EXPORT_OK = 'run_tests';
 
 sub run_tests {
     my $dir  = shift;
@@ -36,7 +36,8 @@ sub _test_formatter {
         $test_dir,
         sub {
             my @t_files
-                = Path::Class::Rule->new->file->name('input.st')->all($test_dir)
+                = Path::Class::Rule->new->file->name('input.st')
+                ->all($test_dir)
                 or return;
 
             if ( @t_files > 1 ) {
@@ -113,14 +114,13 @@ sub _test_stdout {
         : undef;
 
     if ( defined $expected ) {
-        $stdout
-            =~ s{\QSeeded srand with seed |'\E\d{8}\Q|' from local date.}
+        $stdout =~ s{\QSeeded srand with seed |'\E\d{8}\Q|' from local date.}
                 {Seeded srand with seed |'{DATE}|' from local date.};
 
         # This hacks exist to replace user-specific paths with some sort of
         # fixed test.
         s{\|nat .+?/AsyncSubtest[.]pm line \d+}{\|nat CODE line XXX}g
-            for ($stdout, $expected);
+            for ( $stdout, $expected );
 
         _compare_lines( $stdout, $expected )
             or diag($stdout);
@@ -201,6 +201,7 @@ sub _clean_subtest_ids {
 }
 
 sub _clean_file_references {
+
     # These hacks exist to replace user-specific paths with some sort of fixed
     # test.
     for my $output (@_) {
@@ -227,6 +228,7 @@ sub _clean_module_load_errors {
 }
 
 sub _clean_line_numbers {
+
     # this hack exists to avoid us having to fix up the line numbers in the
     # tests each and every time we change the code
     for my $output (@_) {

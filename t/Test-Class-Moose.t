@@ -10,6 +10,6 @@ use Test::Exception 0.43;
 
 use Test2::Require::Module 'Test::Class::Moose' => '0.80';
 
-use T;
+use T qw( run_tests );
 
 run_tests( 't/test-data/Test-Class-Moose', @ARGV );

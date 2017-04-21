@@ -19,7 +19,14 @@ use Test2::Util::HashBase
 sub init {
     my $self = shift;
 
+    # TODO: BUG BUG BUG BUG
+    # This shouldn't dup STDOUT, but use Test2::API's test2_stdout function to
+    # get the original STDOUT instead *but* that hasn't been released to the
+    # CPAN at the time I'm coding this, so, c'est la vie.
+    ## no critic (InputOutput::RequireBriefOpen)
     open my $fh, '>&', STDOUT or die "Can't dup STDOUT: $!";
+    ## use critic
+
     $fh->autoflush(1);
     $self->{ +_HANDLE } = $fh;
 
@@ -40,6 +47,9 @@ sub encoding {
     return;
 }
 
+## no critic (Subroutines::ProhibitBuiltinHomonyms)
+# We've got no choice but to call this 'write' - that's the public API
+# for Test2 formatters
 sub write {
     my $self  = shift;
     my $event = shift;
@@ -82,6 +92,7 @@ sub write {
 
     return;
 }
+## use critic
 
 sub _maybe_start_suite {
     my $self  = shift;
@@ -269,6 +280,9 @@ sub _children_to_tc {
     }
 }
 
+## no critic (Subroutines::ProhibitUnusedPrivateSubroutines)
+# Perl critic isn't clever enough to realize the _event_* methods are
+# called from the dispatch %METHODS hash within this class
 sub _event_ok {
     my $self  = shift;
     my $event = shift;
@@ -335,8 +349,7 @@ sub _event_diag {
 
 # This will be handle in the terminate method
 sub _event_bail {
-    my $self  = shift;
-    my $event = shift;
+    my $self = shift;
 
     return;
 }
@@ -397,6 +410,7 @@ sub _event_other {
 
     die "Unexpected event! $event";
 }
+## use critic
 
 sub _name_for_event {
     my $self  = shift;
@@ -461,10 +475,9 @@ sub _finish_test {
 }
 
 sub _tc_message {
-    my $self         = shift;
-    my $type         = shift;
-    my $content      = shift;
-    my $force_stdout = shift;
+    my $self    = shift;
+    my $type    = shift;
+    my $content = shift;
 
     if ( ref $content ) {
         $content->{flowId} ||= $0;
@@ -484,4 +497,10 @@ sub _not_empty {
 
 1;
 
+__END__
+
 # ABSTRACT: Test2 formatter producing TeamCity compatible output
+
+=for Pod::Coverage
+    init
+    hide_buffered encoding write terminate finalize
