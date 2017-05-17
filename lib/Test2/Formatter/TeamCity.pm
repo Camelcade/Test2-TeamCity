@@ -408,7 +408,7 @@ sub _event_other {
     my $self  = shift;
     my $event = shift;
 
-    die "Unexpected event! $event";
+    # die "Unexpected event! $event";
 }
 ## use critic
 
