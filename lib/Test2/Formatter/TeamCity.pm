@@ -416,15 +416,19 @@ sub _suite_to_tc {
 # Subtests should be handled already, and should not be included in our list
 # of events.
 my %METHODS = (
-    'Test2::Event::Ok'                => '_event_ok',
-    'Test2::Event::Skip'              => '_event_skip',
-    'Test2::Event::Note'              => '_event_note',
-    'Test2::Event::Diag'              => '_event_diag',
-    'Test2::Event::Bail'              => '_event_bail',
-    'Test2::Event::Exception'         => '_event_exception',
-    'Test2::Event::Plan'              => '_event_plan',
-    'Test2::Event::TeamCity::Message' => '_event_tc_message',
-    'Test2::Event::Waiting'           => '_event_waiting',
+    'Test2::Event::Bail'                => '_event_bail',
+    'Test2::Event::Diag'                => '_event_diag',
+    'Test2::Event::Exception'           => '_event_exception',
+    'Test2::Event::Note'                => '_event_note',
+    'Test2::Event::Ok'                  => '_event_ok',
+    'Test2::Event::Plan'                => '_event_plan',
+    'Test2::Event::Skip'                => '_event_skip',
+    'Test2::Event::TeamCity::FinishJob' => '_event_tc_finish_job',
+    'Test2::Event::TeamCity::Message'   => '_event_tc_message',
+    'Test2::Event::TeamCity::StartJob'  => '_event_tc_start_job',
+    'Test2::Event::UnknownStderr'       => '_event_diag',
+    'Test2::Event::UnknownStdout'       => '_event_diag',
+    'Test2::Event::Waiting'             => '_event_waiting',
 );
 
 sub _children_to_tc {
@@ -439,8 +443,17 @@ sub _children_to_tc {
             my $method = $METHODS{ ref $child } // '_event_other';
             my @extra;
             if ( $method eq '_event_ok' ) {
-                while ( @{$children}
-                    && $children->[0]->isa('Test2::Event::Diag') ) {
+
+                # this isn't a good idea.  One unknown event could break
+                # everything.  Must fix this.
+                while (
+                    @{$children}
+                    && (   $children->[0]->isa('Test2::Event::Diag')
+                        || $children->[0]->isa('Test2::Event::UnknownStdout')
+                        || $children->[0]->isa('Test2::Event::UnknownStderr')
+                    )
+                    ) {
+                    _debug("Found a child @{[ ref $children->[0] ]}");
                     push @extra, shift @{$children};
                 }
             }
@@ -453,6 +466,23 @@ sub _children_to_tc {
 ## no critic (Subroutines::ProhibitUnusedPrivateSubroutines)
 # Perl critic isn't clever enough to realize the _event_* methods are
 # called from the dispatch %METHODS hash within this class
+
+sub _event_tc_start_job {
+    my $self  = shift;
+    my $event = shift;
+
+    $self->_tc_message( testSuiteStarted => { name => $event->name } );
+    return;
+}
+
+sub _event_tc_finish_job {
+    my $self  = shift;
+    my $event = shift;
+
+    $self->_tc_message( testSuiteFinished => { name => $event->name } );
+    return;
+}
+
 sub _event_ok {
     my $self  = shift;
     my $event = shift;
@@ -467,7 +497,7 @@ sub _event_ok {
     $self->_start_test($name);
 
     if ( $event->causes_fail ) {
-        my $diag = join q{}, map { $_->message } @extra;
+        my $diag = join q{}, map { $self->__value_of($_) } @extra;
         $self->_fail_test( $name, $diag );
     }
     elsif (@extra) {
@@ -512,9 +542,30 @@ sub _event_diag {
     my $self  = shift;
     my $event = shift;
 
-    $self->_tc_message( message => { text => $event->message } );
+    # note that UnknownStderr and UnexpectedStdout gets routed here as well
+    # as normal diag
+    #
+    # while we could create testStdOut and testStdErr events, there's a several
+    # problems with this:
+    #  a) You can't create these outside tests, so what do you do before the
+    #     first test
+    #  b) You can only produce one of each per test, so we'd have to buffer them
+    #     up for replay at the end
+    #  c) If a test produces stdout, then stderr, then stdout, etc then
+    #     artificially splitting it up into all stdout then all stderr is dumb
+    # So just dump out as messages
+    $self->_tc_message( message => { text => $self->__value_of($event) } );
 
     return;
+}
+
+# a wrapper to make UnknownStderr / UnknownStdout / Diag all the same
+# note that UnknownStdout seems to be one event per line, without a trailing
+# newline, so we have to add that back on
+sub __value_of {
+    my $self  = shift;
+    my $event = shift;
+    return $event->can('output') ? $event->output . "\n" : $event->message;
 }
 
 # This will be handle in the terminate method
