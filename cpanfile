@@ -1,25 +1,34 @@
 requires "Exporter" => "0";
+requires "File::Temp" => "0";
+requires "List::Util" => "1.33";
+requires "Path::Class" => "0";
 requires "TeamCity::Message" => "0";
+requires "Term::ANSIColor" => "0";
 requires "Test2" => "1.0203060";
 requires "Test2::API" => "1.302083";
 requires "Test2::Event" => "0";
 requires "Test2::Formatter" => "0";
 requires "Test2::Util::HashBase" => "0";
+requires "autodie" => "0";
 requires "parent" => "0";
 requires "strict" => "0";
 requires "warnings" => "0";
 
 on 'test' => sub {
+  requires "App::Yath" => "0";
+  requires "Capture::Tiny" => "0";
   requires "ExtUtils::MakeMaker" => "0";
   requires "File::Spec" => "0";
+  requires "File::Spec::Functions" => "0";
+  requires "FindBin" => "0";
   requires "IPC::Run3" => "0";
-  requires "Path::Class" => "0";
   requires "Path::Class::Rule" => "0";
   requires "Test2::Bundle::Extended" => "0";
   requires "Test2::Require::Module" => "0";
   requires "Test::Class::Moose" => "0.80";
   requires "Test::Exception" => "0.43";
   requires "Test::More" => "1.302015";
+  requires "Time::HiRes" => "0";
   requires "lib" => "0";
 };
 
@@ -32,8 +41,6 @@ on 'configure' => sub {
 };
 
 on 'develop' => sub {
-  requires "Code::TidyAll" => "0.56";
-  requires "Code::TidyAll::Plugin::SortLines::Naturally" => "0.000003";
   requires "Code::TidyAll::Plugin::Test::Vars" => "0.02";
   requires "File::Spec" => "0";
   requires "IO::Handle" => "0";
