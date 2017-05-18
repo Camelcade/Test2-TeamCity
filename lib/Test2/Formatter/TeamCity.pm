@@ -5,7 +5,7 @@ use warnings;
 
 use parent 'Test2::Formatter';
 
-use TeamCity::Message qw( tc_message tc_timestamp );
+use TeamCity::Message 0.02 qw( tc_message tc_timestamp );
 ## no critic (BuiltinFunctions::ProhibitStringyEval)
 BEGIN { eval 'use Win32::Console::ANSI; 1' or die $@ if 'MSWin32' eq $^O; }
 ## use critic

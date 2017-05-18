@@ -2,7 +2,7 @@ requires "Exporter" => "0";
 requires "File::Temp" => "0";
 requires "List::Util" => "1.33";
 requires "Path::Class" => "0";
-requires "TeamCity::Message" => "0";
+requires "TeamCity::Message" => "0.02";
 requires "Term::ANSIColor" => "0";
 requires "Test2" => "1.0203060";
 requires "Test2::API" => "1.302083";
@@ -18,6 +18,7 @@ on 'test' => sub {
   requires "App::Yath" => "0";
   requires "Capture::Tiny" => "0";
   requires "ExtUtils::MakeMaker" => "0";
+  requires "File::Basename" => "0";
   requires "File::Spec" => "0";
   requires "File::Spec::Functions" => "0";
   requires "FindBin" => "0";
@@ -29,6 +30,7 @@ on 'test' => sub {
   requires "Test::Exception" => "0.43";
   requires "Test::More" => "1.302015";
   requires "Time::HiRes" => "0";
+  requires "base" => "0";
   requires "lib" => "0";
 };
 

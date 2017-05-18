@@ -12,7 +12,7 @@ our $VERSION = '0.000001';
 use List::Util 1.33 qw( none );
 use File::Temp qw( tempfile );
 use Path::Class qw( file );
-use TeamCity::Message qw( tc_message tc_timestamp );
+use TeamCity::Message 0.02 qw( tc_message tc_timestamp );
 ## no critic (BuiltinFunctions::ProhibitStringyEvse critic
 use Term::ANSIColor qw( color );
 use Test2::Event::TeamCity::FinishJob;
