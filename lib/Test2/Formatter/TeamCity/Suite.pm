@@ -62,7 +62,7 @@ Parent test suite
 
 =head3 realtime
 
-Is this testsuite suitable for outputting in near real time or not?  We ca
+Is this test suite suitable for outputting in near real time or not?
 
 =head3 Methods
 

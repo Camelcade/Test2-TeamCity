@@ -447,6 +447,11 @@ sub _pad {
 
 __END__
 
+=for Pod::Coverage
+  init
+  listen
+  summary
+
 =head1 DESCRIPTION
 
 This is a prototype for a TeamCity renderer.  It buffers up all test2 events
