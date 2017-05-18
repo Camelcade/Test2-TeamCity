@@ -51,10 +51,10 @@ sub encoding {
     return;
 }
 
-sub DEBUG { $ENV{TEST2_TEAMCITY_VERBOSE} }
+sub _DEBUG { $ENV{TEST2_TEAMCITY_VERBOSE} }
 
 sub _debug {
-    return unless DEBUG();
+    return unless _DEBUG();
     print STDERR color('yellow'), @_, "\n", color('reset')
         or die "Can't print to STDERR?: $!";
     return;
@@ -134,7 +134,7 @@ sub write {
         # first event in that subtest, in which case we need to start a new
         # suite. The Subtest event will come later and finish the suite we
         # start.
-        my $did_start_suite = $self->_maybe_start_suite($event);
+        $self->_maybe_start_suite($event);
 
         # are we outputing the event in "realtime"?  This means that as soon as
         # we start a new test (and therefore we're done collecting all the diag

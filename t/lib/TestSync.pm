@@ -78,9 +78,7 @@ sub wait_for_notification {
 # been sent by the process, it also ensures that everything that process has
 # created up to that point has actually been processed
 sub send_notification {
-    my $name     = shift;
-    my $filename = _filename_for_notification($name);
-
+    my $name = shift;
     _debug( $0 . ': sending ' . $name );
 
     # send the event that (eventually) will result in the file being

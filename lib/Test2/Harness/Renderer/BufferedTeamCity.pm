@@ -29,7 +29,7 @@ use Test2::Util::HashBase qw(
     _job_name
 );
 
-sub DEBUG { $ENV{TEST2_TEAMCITY_VERBOSE} }
+sub _DEBUG { $ENV{TEST2_TEAMCITY_VERBOSE} }
 
 # this is the "constructor" - called by hashbase when the user calls new
 sub init {
@@ -89,16 +89,16 @@ sub listen {
         my $job   = shift;
         my $event = shift;
 
-        DEBUG() && $self->_output_start_banner_debugging( $job, $event );
+        _DEBUG() && $self->_output_start_banner_debugging;
 
         $self->_possibly_add_timestamp_to_event($event);
         $self->_possibly_setup_this_job($job);
 
-        DEBUG() && $self->_output_per_event_debugging( $job, $event );
+        _DEBUG() && $self->_output_per_event_debugging( $job, $event );
 
         $self->_process_this_event( $job, $event );
 
-        DEBUG() && $self->_output_queue_state_debugging($event);
+        _DEBUG() && $self->_output_queue_state_debugging;
 
         $self->_flush_buffers_as_much_as_possible;
 
@@ -329,7 +329,7 @@ sub _add_to_ready_queue {
 # debugging utilities
 
 sub _debug {
-    return unless DEBUG();
+    return unless _DEBUG();
     for (@_) {
         print STDERR color('black')
             . color('on_cyan')
@@ -338,27 +338,11 @@ sub _debug {
     }
 }
 
-sub _should_debug {
-    my $self  = shift;
-    my $event = shift;
-
-    # # ignore some events
-    # return
-    #     if ref($event)
-    #     =~ /\ATest2::Event::(?:Process(?:Start|Finish)|Encoding|ParserSelect|Plan|)\z/;
-
-    return 1;
-}
-
 {
     my $n = 0;
 
     sub _output_start_banner_debugging {
-        my $self  = shift;
-        my $job   = shift;
-        my $event = shift;
-
-        return unless $self->_should_debug($event);
+        my $self = shift;
 
         $n++;
         print STDERR color('green'), "== $n ", '=' x 60, color('reset'), "\n";
@@ -366,11 +350,9 @@ sub _should_debug {
 }
 
 sub _output_queue_state_debugging {
-    my $self  = shift;
-    my $event = shift;
+    my $self = shift;
 
-    return if DEBUG() < 2;
-    return unless $self->_should_debug($event);
+    return if _DEBUG() < 2;
 
     print STDERR color('magenta'), '    READY QUEUE: ',
         join(
@@ -399,8 +381,7 @@ sub _output_per_event_debugging {
     my $job   = shift;
     my $event = shift;
 
-    return if DEBUG() < 2;
-    return unless $self->_should_debug($event);
+    return if _DEBUG() < 2;
 
     # this copes with things not implementing ->todo etc even though the
     # documentation says that the base class should do
