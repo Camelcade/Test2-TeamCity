@@ -331,10 +331,7 @@ sub _add_to_ready_queue {
 sub _debug {
     return unless _DEBUG();
     for (@_) {
-        print STDERR color('black')
-            . color('on_cyan')
-            . $_
-            . color('reset') . "\n";
+        print color('black') . color('on_cyan') . $_ . color('reset') . "\n";
     }
 }
 
@@ -345,7 +342,7 @@ sub _debug {
         my $self = shift;
 
         $n++;
-        print STDERR color('green'), "== $n ", '=' x 60, color('reset'), "\n";
+        print color('green'), "== $n ", '=' x 60, color('reset'), "\n";
     }
 }
 
@@ -354,13 +351,13 @@ sub _output_queue_state_debugging {
 
     return if _DEBUG() < 2;
 
-    print STDERR color('magenta'), '    READY QUEUE: ',
+    print color('magenta'), '    READY QUEUE: ',
         join(
         ',',
         map { $self->_job_name_for_job_id($_) } @{ $self->{ +_READY_QUEUE } }
         ),
         color('reset'), "\n";
-    print STDERR color('magenta'), 'REAL TIME QUEUE: ',
+    print color('magenta'), 'REAL TIME QUEUE: ',
         join(
         ',',
         map { $self->_job_name_for_job_id($_) }
@@ -369,9 +366,9 @@ sub _output_queue_state_debugging {
         color('reset'), "\n";
     for my $job_id ( sort keys %{ $self->{ +_BUFFERS } } ) {
         my $name = $self->_job_name_for_job_id($job_id);
-        print STDERR color('magenta'), " * $name: ";
-        print STDERR join ',', map {ref} @{ $self->{ +_BUFFERS }{$job_id} };
-        print STDERR color('reset'), "\n";
+        print color('magenta'), " * $name: ";
+        print join ',', map {ref} @{ $self->{ +_BUFFERS }{$job_id} };
+        print color('reset'), "\n";
 
     }
 }
@@ -408,7 +405,7 @@ job '@{[ $job->file ]}' emitted a @{[ color('red'), ref $event ]}
 @{[ color('reset') ]}
 THEEND
 
-    print STDERR _pad( $string, $e->('nested') || 0 );
+    print _pad( $string, $e->('nested') || 0 );
 }
 
 sub _pad {

@@ -55,8 +55,8 @@ sub _DEBUG { $ENV{TEST2_TEAMCITY_VERBOSE} }
 
 sub _debug {
     return unless _DEBUG();
-    print STDERR color('yellow'), @_, "\n", color('reset')
-        or die "Can't print to STDERR?: $!";
+    print color('yellow'), @_, "\n", color('reset')
+        or die "Can't print?: $!";
     return;
 }
 
