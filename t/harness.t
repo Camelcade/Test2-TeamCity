@@ -12,6 +12,7 @@ use TestSync;
 
 use App::Yath;
 use Path::Class::Rule;
+use Test2::API qw( test2_reset_io );
 use Test2::Bundle::Extended;
 ## no critic (BuiltinFunctions::ProhibitStringyEval)
 BEGIN { eval 'use Win32::Console::ANSI; 1' or die $@ if 'MSWin32' eq $^O; }
@@ -27,7 +28,7 @@ my ($captured) = capture(
     sub {
         # turn on verbosity.  This will only be printed out if the test suite
         # fails
-        local $ENV{TEST2_TEAMCITY_VERBOSE} = 0;
+        local $ENV{TEST2_TEAMCITY_VERBOSE} = 255;
 
         my $yath = App::Yath->new(
             args => [
@@ -130,7 +131,7 @@ my $expected = <<'EXPECTED';
 EXPECTED
 chomp $expected;
 
-unless ( 0 && ok( $captured eq $expected, 'output matches expected' ) ) {
+unless ( ok( $captured eq $expected, 'output matches expected' ) ) {
     diag('***** Strings differ *****');
 
     ( $captured, $expected ) = colorize_differences( $captured, $expected );
@@ -147,7 +148,6 @@ done_testing();
 sub colorize_differences {
     my $got    = shift;
     my $wanted = shift;
-    return ($got, $wanted);
 
     # colors
     my $green = color('black') . color('on_green');
@@ -192,6 +192,13 @@ sub capture {
     my $pid = open my $fh, '-|' // die 'Problem forking';
     return do { local $/ = undef; <$fh> } if $pid;
     ## use critic
+
+    # we want to print to the child STDOUT not a duped io of the
+    # controlling process' STDOUT so our parent can capture it
+    test2_reset_io();
+
+    # now run the code that was passed in
     $uboat->();
+
     exit;
 }

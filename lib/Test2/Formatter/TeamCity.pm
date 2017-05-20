@@ -10,7 +10,8 @@ use TeamCity::Message 0.02 qw( tc_message tc_timestamp );
 BEGIN { eval 'use Win32::Console::ANSI; 1' or die $@ if 'MSWin32' eq $^O; }
 ## use critic
 use Term::ANSIColor qw( color );
-use Test2 1.0203060 ();
+use Test2 1.302085 ();
+use Test2::API 1.302085 qw( test2_stdout );
 use Test2::Formatter::TeamCity::Suite;
 
 our $VERSION = '1.000000';
@@ -18,24 +19,11 @@ our $VERSION = '1.000000';
 # The no_* attributes are solely there so Test::Builder doesn't complain. What
 # they're set to has no impact on the output from this Formatter class.
 use Test2::Util::HashBase
-    qw( no_diag no_header no_numbers _handle _current _finalized _top );
+    qw( no_diag no_header no_numbers _current _finalized _top );
 
 sub init {
     my $self = shift;
-
-    # TODO: BUG BUG BUG BUG
-    # This shouldn't dup STDOUT, but use Test2::API's test2_stdout function to
-    # get the original STDOUT instead *but* that hasn't been released to the
-    # CPAN at the time I'm coding this, so, c'est la vie.
-    ## no critic (InputOutput::RequireBriefOpen)
-    open my $fh, '>&', STDOUT or die "Can't dup STDOUT: $!";
-    ## use critic
-
-    $fh->autoflush(1);
-    $self->{ +_HANDLE } = $fh;
-
     $self->_start_suite( $0, 0, $0 );
-
     return;
 }
 
@@ -45,7 +33,9 @@ sub encoding {
     my $self     = shift;
     my $encoding = shift;
 
-    binmode $self->{ +_HANDLE }, $encoding
+    # this might not be the best thing to do to a global filehandle
+    # but it seems like everything else is doing this...
+    binmode test2_stdout(), $encoding
         or die $!;
 
     return;
@@ -55,7 +45,7 @@ sub _DEBUG { $ENV{TEST2_TEAMCITY_VERBOSE} }
 
 sub _debug {
     return unless _DEBUG();
-    print color('yellow'), @_, "\n", color('reset')
+    print { test2_stdout() } color('yellow'), @_, "\n", color('reset')
         or die "Can't print?: $!";
     return;
 }
@@ -705,7 +695,7 @@ sub _tc_message {
 
     }
 
-    print { $self->{ +_HANDLE } } tc_message(
+    print { test2_stdout() } tc_message(
         type    => $type,
         content => $content,
     ) or die $!;
