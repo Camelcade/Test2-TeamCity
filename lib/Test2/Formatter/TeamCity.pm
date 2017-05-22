@@ -713,6 +713,21 @@ __END__
 
 # ABSTRACT: Test2 formatter producing TeamCity compatible output
 
+=head1 SYNOPSIS
+
+    T2_FORMATTER=TeamCity perl -Ilib t/mytest.t
+
+=head1 DESCRIPTION
+
+This is a formatter for TeamCity.  Rather than having your Perl test script
+output TAP, with this module you can output output that TeamCity can understand.
+
+=head2 SEE ALSO
+
+L<Test2::Harness::Renderer::BufferedTeamCity> is a module that allows C<yath>
+to output TeamCity output (using this module.)  It'll handle running multiple
+processes at once too.
+
 =for Pod::Coverage
     init
     hide_buffered encoding write terminate finalize

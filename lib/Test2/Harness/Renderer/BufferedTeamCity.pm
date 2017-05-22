@@ -436,13 +436,52 @@ __END__
   listen
   summary
 
+=head1 SYNOPSIS
+
+    shell$ yath -j5 -q -RBufferedTeamCity t
+
 =head1 DESCRIPTION
 
-This is a prototype for a TeamCity renderer.  It buffers up all test2 events
-for the duration of the test run and then outputs them in one fail swoop at
-the end.
+This is a renderer for Test2::Harness that allows you to create output
+suitable for running tests under TeamCity.
 
-This uses the Test2 legacy event API.  It'll do for now.
+You can setup TeamCity to run your tests by setting a I<Command Line> Build Step
+that executes a I<yath> line as above with the B<-RBufferedTeamCity> command
+line option to produce TeamCity compatible output.
 
+=head2 Buffering
 
+This renderer is capable of running multiple test processes at the same time and
+ensuring that the output form the various tests does not get mingled together
+by buffering up output.
 
+While you don't need to worry about this and it all I<just works>, here are the
+details of what will happen:
+
+Each process will output test output from a process as a separate "test suite"
+(i.e. as a separate group of tests) running under the main test suite.
+Usually a process' tests won't be output until that process has completed, at
+which point they are immediately flushed out.
+
+However, if a process emits a failing test then all buffered output for that
+process so far is immediately flushed and then future tests results will be
+reported in real time (assuming another process isn't currently already
+outputting in real time). This has the side effect of blocking all other output
+from other processes until the current real time process has completed.
+
+When a real time process is completed any completed processes will have their
+output immediately and completely flushed, and then another failing process
+will be promoted to real time output if such a process exists.
+
+We make absolutely no use of the TeamCity I<flowId> attribute;  User testing
+shows that the interactive output of this can be very confusing in the current
+TeamCity UI mixing up the output of several tests together.
+
+=head1 SEE ALSO
+
+L<Test2::Formatter::TeamCity> is the underlying formatter that this module
+uses.  You can use the C<T2_FORMATTER> environment variable for a simple
+real time TeamCity test run when you only have one process to concern yourself
+with.
+
+L<Test2::Harness> and L<yath> for details on the Test 2 Harness.
