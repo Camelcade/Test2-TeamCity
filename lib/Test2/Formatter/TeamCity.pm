@@ -434,8 +434,20 @@ sub _children_to_tc {
             my @extra;
             if ( $method eq '_event_ok' ) {
 
-                # this isn't a good idea.  One unknown event could break
-                # everything.  Must fix this.
+                # So we're gathering up all the diagnostics and STDOUT/STDERR
+                # events that are following the test and associating it with the
+                # test.  This is an attempt to mask over the differences between
+                # TeamCity (where all diagnostics happen between the start and
+                # end test events) and Perl (where you just send a test event
+                # for the test and subsequent diagnostic events which aren't
+                # really properly associated.)  This isn't a very foolproof
+                # scheme - any event that Test2 sends that isn't one of
+                # Diag/UnknownStdout/UknownStderr will stop this collection, and
+                # we're strictly meant to ignore events we don't understand so
+                # there could be any number of events that might innocently do
+                # this...but this is as good a plan as any for now considering
+                # we don't (we can't) know about all possible events and if
+                # we should or should not stop this event bundling
                 while (
                     @{$children}
                     && (   $children->[0]->isa('Test2::Event::Diag')
