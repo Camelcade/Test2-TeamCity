@@ -430,7 +430,7 @@ sub _children_to_tc {
             $self->_suite_to_tc($child);
         }
         else {
-            my $method = $METHODS{ ref $child } // '_event_other';
+            my $method = $METHODS{ ref $child } // next;
             my @extra;
             if ( $method eq '_event_ok' ) {
 
@@ -625,13 +625,6 @@ sub _event_tc_message {
 
 sub _event_waiting {
     return;
-}
-
-sub _event_other {
-    my $self  = shift;
-    my $event = shift;
-
-    # die "Unexpected event! $event";
 }
 ## use critic
 
