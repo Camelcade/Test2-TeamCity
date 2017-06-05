@@ -1,7 +1,7 @@
 ##teamcity[progressMessage 'starting t/test-data/Test2/subtest-ok/input.st']
-##teamcity[progressMessage 'starting t/test-data/Test2/subtest-ok/input.st - subtest-A-name']
 ##teamcity[testSuiteStarted flowId='t/test-data/Test2/subtest-ok/input.st' name='t/test-data/Test2/subtest-ok/input.st']
 ##teamcity[message flowId='t/test-data/Test2/subtest-ok/input.st' text='Seeded srand with seed |'{DATE}|' from local date.']
+##teamcity[progressMessage 'starting t/test-data/Test2/subtest-ok/input.st - subtest-A-name']
 ##teamcity[testStarted flowId='t/test-data/Test2/subtest-ok/input.st' name='subtest-ok-msg-1']
 ##teamcity[testFinished flowId='t/test-data/Test2/subtest-ok/input.st' name='subtest-ok-msg-1']
 ##teamcity[testSuiteStarted flowId='t/test-data/Test2/subtest-ok/input.st' name='subtest-A-name']

@@ -68,3 +68,7 @@ add_packages = Carp Test::Builder
 
 # Sometimes I want to write "return unless $x > 4"
 [-ControlStructures::ProhibitNegativeExpressionsInUnlessAndUntilConditions]
+
+[InputOutput::RequireCheckedSyscalls]
+functions = :builtins
+exclude_functions = print
