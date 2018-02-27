@@ -10,7 +10,6 @@ use File::Spec::Functions qw( catdir updir );
 use lib catdir( $FindBin::Bin, 'lib' );
 use TestSync;
 
-use App::Yath;
 use Path::Class::Rule;
 use Test2::API qw( test2_reset_io );
 use Test2::Bundle::Extended;
@@ -24,31 +23,34 @@ my @t_files
     Path::Class::Rule->new->file->name('*.st')
     ->all( catdir( $FindBin::Bin, 'test-data', 'Harness' ) );
 
-my ($captured) = capture(
+my $captured = capture(
     sub {
+        require App::Yath;
+        require App::Yath::Command::test;
+
         # turn on verbosity.  This will only be printed out if the test suite
         # fails
         local $ENV{TEST2_TEAMCITY_VERBOSE} = 255;
 
-        my $yath = App::Yath->new(
-            args => [
+        return App::Yath->run_command(
+            'App::Yath::Command::test', 'test',
+            App::Yath->pre_parse_args(
+                [
+                    # run all the tests at the same time.  They'll communicate
+                    # via TestSync's tempdir to ensure that the processes output
+                    # test events in the same order each time
+                    '-j', '5',
 
-                # run all the tests at the same time.  They'll communicate
-                # via TestSync's tempdir to ensure that the processes output
-                # test events in the same order each time
-                '-j', '5',
+                    # enable our custom renderer (or rather, the testing
+                    # subclass of it.)
+                    '-r', 'TestingBufferedTeamCity',
 
-                # enable our custom renderer (or rather, the testing subclass of
-                # it.)  We need to use -q to suppress the standard output.
-                '-q',
-                '-RTestingBufferedTeamCity',
-
-                # for all the files we found
-                '--',
-                @t_files
-            ],
+                    # for all the files we found
+                    '--',
+                    @t_files,
+                ]
+            ),
         );
-        $yath->run();
     }
 );
 
@@ -56,7 +58,7 @@ my $original_output = $captured;
 
 # remove all the non team city lines
 my @captured = split /\n/, $captured;
-@captured = grep {/##teamcity/} @captured;
+@captured = grep { /##teamcity/ } @captured;
 
 # remove everything that is can vary per environment
 for (@captured) {
